@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 public class PairBtnGrid {
   public final int cell_number;
   public final Button button;
-  
+
 
   public PairBtnGrid(int cell_number, Button button) {
     this.cell_number = cell_number;

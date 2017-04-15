@@ -30,21 +30,76 @@
                               <Insets bottom="15.0" left="5.0" right="-50.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <SplitMenuButton mnemonicParsing="false" prefHeight="28.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Сложность ">
+                        <SplitMenuButton fx:id="difficulty_select" mnemonicParsing="false" prefHeight="28.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Сложность ">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Легко" />
-                            <MenuItem mnemonicParsing="false" text="Средне" />
-                              <MenuItem mnemonicParsing="false" text="Сложно" />
+                            <MenuItem fx:id="low_label" mnemonicParsing="false" onAction="#lowSetEvent" text="Легко" />
+                            <MenuItem fx:id="middle_label" mnemonicParsing="false" onAction="#middleSetEvent" text="Средне" />
+                              <MenuItem fx:id="high_label" mnemonicParsing="false" onAction="#highSetEvent" text="Сложно" />
                           </items>
                            <VBox.margin>
                               <Insets bottom="50.0" left="5.0" top="10.0" />
                            </VBox.margin>
                         </SplitMenuButton>
-                        <Button fx:id="exitBtn" mnemonicParsing="false" onMouseClicked="#exitBtnHandle" prefHeight="57.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Выход">
+                        <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="194.0" text="ХОД">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" fillHeight="false" prefHeight="138.0" prefWidth="185.0">
+                           <children>
+                              <Label fx:id="current_turn_label" onMouseClicked="#changeStartTurn" prefHeight="148.0" prefWidth="75.0" text="X" textFill="RED">
+                                 <font>
+                                    <Font name="Noto Sans Myanmar UI Bold" size="96.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                           </children>
                            <VBox.margin>
-                              <Insets left="5.0" top="200.0" />
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="35.0" prefWidth="185.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" prefHeight="20.0" prefWidth="270.0" text="X-СЧЕТ / O-СЧЕТ: " />
+                              <Label fx:id="winlose_lb" alignment="TOP_CENTER" prefHeight="38.0" prefWidth="194.0" text="0/0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="58.0" prefWidth="185.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="47.0" prefWidth="217.0" text="СЛОЖНОСТЬ: " wrapText="true">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="difficulty_label" alignment="CENTER" lineSpacing="2.0" prefHeight="55.0" prefWidth="185.0" text="Не выбрано" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                           </children>
+                        </HBox>
+                        <Button fx:id="exitBtn" mnemonicParsing="false" onMouseClicked="#exitBtnHandle" prefHeight="51.0" prefWidth="175.0" style="-fx-background-radius: 0;" text="Выход">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" />
                            </VBox.margin>
                         </Button>
+                        <TitledPane expanded="false" text="Правила игры">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="7.0" text="X - ходит первый" />
+                                    <Label layoutX="14.0" layoutY="23.0" text="O - ходит второй" />
+                                    <Label layoutY="40.0" text="Чтобы сменить начальный " />
+                                    <Label layoutY="59.0" text="ход, нажмите на знак." />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
                      </children>
                   </VBox>
                </children></AnchorPane>

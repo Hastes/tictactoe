@@ -1,5 +1,6 @@
 package application;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +53,57 @@ public class TicTacToe {
 			if (result) return true;
 		}
 		return false;
+	}
+
+	public static int[] win_get_cells(Grid[] grid){
+		int[] result_array = new int[3];
+		int[] cols = {0, 3, 6};
+		int[][] diagonals = {{0, 4, 8},{2, 4, 6}};
+		int counter = 0;
+		for(int i: cols) {
+			counter = 0;
+			for(int j = 0; j<=2; j++) {
+				if(check_cell(i, j, grid)) {
+					result_array[counter] = i + j;
+					counter++;
+					continue;
+				}
+			}
+			if (counter == result_array.length) return result_array;
+		}
+
+		for (int i = 0; i<=2; i++) {
+			counter = 0;
+			for (int j: cols) {
+				if(check_cell(i, j, grid)) {
+					result_array[counter] = i + j;
+					counter++;
+					continue;
+				}
+			}
+			if (counter == result_array.length) return result_array;
+		}
+		for (int[] i : diagonals) {
+			counter = 0;
+			if (!grid[i[0]].cell){
+				counter = 0;
+				continue;
+			}
+
+			for (int j: i){
+				if(!grid[j].cell) {
+					counter = 0;
+					continue;
+				}
+				if(grid[j].cell && grid[i[0]].value == grid[j].value) {
+					result_array[counter] = j;
+					counter++;
+					continue;
+				}
+			}
+			if (counter == result_array.length) return result_array;
+		}
+		return result_array;
 	}
 
 	// if all cells is done
